@@ -7,7 +7,7 @@
       <router-link :class="[{actualPage: actualUrl=='blog'}, 'navLinks']" to="/blog">Blog</router-link>
       <router-link :class="[{actualPage: actualUrl=='sobre'}, 'navLinks']" to="/sobre">Sobre</router-link>
     </header>
-    <section>
+    <section id="content">
       <router-view></router-view>
     </section>
   </div>
@@ -105,11 +105,9 @@ export default {
     transform: scaleY(1);
   }
 
-  h2{
-    font-family: 'Roboto Mono';
-    font-weight: 200;
-    font-size: 1.2rem;
-    color: white;
+  #content{
+    width: 100%;
+    height: 100vh;
   }
 
 </style>
