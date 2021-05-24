@@ -18,9 +18,6 @@ export default {
 </script>
 
 <style scoped>
-  @import url('../../../assets/fonts/Roboto_Mono/stylesheet.css');
-  @import url('../../../assets/fonts/Roboto/stylesheet.css');
-  
   .writing-section{
       display: flex;
       flex-direction: column;

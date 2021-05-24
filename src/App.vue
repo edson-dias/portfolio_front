@@ -19,7 +19,8 @@ export default {
 
 <style>
 
-
+@import url('./assets/fonts/Roboto_Mono/stylesheet.css');
+@import url('./assets/fonts/Roboto/stylesheet.css');
 
 #app {
   -webkit-font-smoothing: antialiased;

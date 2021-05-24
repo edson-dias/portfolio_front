@@ -16,10 +16,6 @@ export default {
   name: 'Home',
   components: {TypeWriting},
   methods: {
-    xablau(){
-      let music = new Audio(require('../../assets/keyboard.wav'))
-      music.play()
-    }
   }
 }
 </script>
