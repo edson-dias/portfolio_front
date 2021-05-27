@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="content">
     <header>
       <router-link :class="[{actualPage: actualUrl=='home'}, 'navLinks']" to="/">Home</router-link>
       <router-link :class="[{actualPage: actualUrl=='portfolio'}, 'navLinks']" to="/portfolio">Portfólio</router-link>
@@ -7,7 +7,7 @@
       <router-link :class="[{actualPage: actualUrl=='blog'}, 'navLinks']" to="/blog">Blog</router-link>
       <router-link :class="[{actualPage: actualUrl=='sobre'}, 'navLinks']" to="/sobre">Sobre</router-link>
     </header>
-    <section id="content">
+    <section >
       <router-view></router-view>
     </section>
   </div>

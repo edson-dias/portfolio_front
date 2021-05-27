@@ -14,18 +14,6 @@ export default {
 
             let particlesArray
 
-            let mouse = {
-                x: null,
-                y: null,
-                radius: (canvas.height/100) * (canvas.width/100)
-            }
-
-            window.addEventListener('mousemove', 
-                function(event){
-                    mouse.x = event.x
-                    mouse.y = event.y
-                }
-            )
 
             class Particle{
                 constructor(x, y, directionX, directionY, size, color){
@@ -40,7 +28,7 @@ export default {
                 draw(){
                     ctx.beginPath()
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false)
-                    ctx.fillStyle = '#17181a'
+                    ctx.fillStyle = '#2f333a'
                     ctx.fill()
                 }
 
@@ -51,24 +39,6 @@ export default {
                     if(this.y > canvas.height || this.y < 0){
                         this.directionY = -this.directionY
                     }
-
-                    let dx = mouse.x - this.x
-                    let dy = mouse.y - this.y
-                    let distance = Math.sqrt(dx*dx + dy*dy)
-                    if(distance < mouse.radius + this.size){
-                        if(mouse.x < this.x && this.x <canvas.width - this.size * 10){
-                            this.x += 10
-                        }
-                        if(mouse.x > this.x && this.x > this.size * 10){
-                            this.x -= 10
-                        }
-                        if(mouse.y < this.y && this.y <canvas.height - this.size * 10){
-                            this.y += 10
-                        }
-                        if(mouse.y > this.y && this.y > this.size * 10){
-                            this.y -= 10
-                        }
-                    }
                     this.x += this.directionX
                     this.y += this.directionY
                     this.draw()
@@ -77,14 +47,14 @@ export default {
 
             function init(){
                 particlesArray = []
-                let numberOfParticles = (canvas.height * canvas.width) / 18000
+                let numberOfParticles = (canvas.height * canvas.width) / 50000
                 for(let i = 0; i < numberOfParticles; i++){
                     let size = 1
                     let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size *2)
                     let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size *2)
-                    let directionX = (Math.random() * 5) - 2.5
-                    let directionY = (Math.random() * 5) - 2.5
-                    let color = '#17181a'
+                    let directionX = (Math.random() * 4) - 1.5
+                    let directionY = (Math.random() * 4) - 1.5
+                    let color = '#2f333a'
 
                     particlesArray.push(new Particle(x, y, directionX, directionY, size, color))
                 }
@@ -98,7 +68,7 @@ export default {
                         * (particlesArray[a].x - particlesArray[b].x))
                         + ((particlesArray[a].y - particlesArray[b].y) *
                         (particlesArray[a].y - particlesArray[b].y))
-                        if(distance < (canvas.width/8) * (canvas.height/8)){
+                        if(distance < (canvas.width/5) * (canvas.height/5)){
                             opacityValue = 1 - (distance/100000)
                             ctx.strokeStyle='rgba(70,70,79,' + opacityValue + ')'
                             ctx.lineWidth = 1
@@ -113,7 +83,6 @@ export default {
             function animate(){
                 requestAnimationFrame(animate)
                 ctx.clearRect(0,0,innerWidth, innerHeight)
-
                 for(let i = 0; i < particlesArray.length; i++){
                     particlesArray[i].update()
                 }
@@ -124,17 +93,11 @@ export default {
                 function(){
                     canvas.width = innerWidth
                     canvas.height = innerHeight
-                    mouse.radius = ((canvas.height/100) * (canvas.height/100))
+                    
                     init()
                 }
             )
 
-            window.addEventListener('mouseout',
-                function(){
-                    mouse.x = undefined
-                    mouse.y = undefined
-                }
-            )
 
             init()
             animate()
@@ -147,7 +110,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
     *{
         margin: 0;
         padding: 0;
@@ -159,6 +122,5 @@ export default {
         width: 100%;
         height: 100%;
         z-index: 1;
-        background-color: #2f333a;
     }
 </style>

@@ -30,11 +30,12 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100%;
+  background-color: #2f333a;
 }
 
 .main{
   width: 60vw;
-  height: 100vh;
+  height: 100%;
   position: relative;
   z-index: 25;
   background-color: rgba(0, 0, 0, 0.450);

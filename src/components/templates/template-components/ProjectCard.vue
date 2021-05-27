@@ -1,32 +1,25 @@
 <template>
-	<div v-if="expanded">
-		<div class="expanded">
-		
-		</div>
-	</div>
-	<div v-else>
+	<div>
 		<div class="card">
 			<div class="imgBx">
 				<img :src="mainImage" alt="main project image">
-				
-					<h2>Projeto: {{data.title}}</h2>
-					<span>{{data.status}}</span>
-					<div class="icons">
-						<i v-for="(langs, k) in data.languages" :key="k" :class="ConvertLanguagesToIcons(langs)"></i>
-					</div>
+				<h2>Projeto: {{data.title}}</h2>
+				<span>{{data.status}}</span>
+				<div class="icons">
+					<i v-for="(langs, k) in data.languages" :key="k" :class="ConvertLanguagesToIcons(langs)"></i>
+				</div>
 			</div>
 			<div class="content">
 				<div class="links">
-					<router-link to="/">Detalhes</router-link>
+					<router-link :to="{name: 'projectById', params: {id: data.id, infos: data}}">Detalhes</router-link>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </template>
 
 <script>
-import {baseEntrypoint} from '@/global'
+import {baseEntrypoint, languagesIcons} from '@/global'
 
 export default {
   props: {
@@ -34,17 +27,10 @@ export default {
   },
   data: function(){
     return{
-		expanded: false
     }
   },
   methods: {
       ConvertLanguagesToIcons(dataLanguage){
-        const languagesIcons = {
-          'JavaScript': 'fab fa-js',
-          'Python': 'fab fa-python',
-          'CSS': 'fab fa-css3-alt',
-          'HTML': 'fab fa-html5'
-        }
         return languagesIcons[dataLanguage]
       },
     },
@@ -164,33 +150,3 @@ export default {
 		background-color: rgba(0, 0, 0, 0.397);
 	}
 </style>
-
- <!-- 
-    "id": 1, 
-    "project_image":[ "media/imgs/main.png", "media/imgs/port1.png", "media/imgs/port2.png" ], 
-    "project_links":[ 
-        "Github - Front: https://github.com/edson-dias/portfolio", 
-        "Github - Backend: https://github.com/edson-dias/portfolio_server", 
-        "Projeto Online: 127.0.0.1:8080/" 
-      ], 
-    "languages": [ "Python", "JavaScript" ], 
-    "frameworks": [ "Django Rest Framework", "Django", "VueJS" ], 
-    "title": "Portfólio", 
-    "status": "On Going", 
-    "summary": "Projeto de um site pessoal, contendo apresentação pessoal, currículo e portfólio.", 
-    "justification": "Frontend construído com JavaScript, CSS e HTML.\r\nBackend construído com Xablau", 
-    "improvements": "Tem que melhorar aí", 
-    "credit": "Créditos pra mim" }
-    
-    
-    js -> fab fa-js
-    python -> fab fa-python
-    css -> fab fa-css3-alt
-    html -> fab fa-html5
-
-    vue -> fab fa-vuejs
-    bootstrap -> fab fa-bootstrap
-    django -> <img src="@/assets/logos/django-logo.png" width="60px" height="30px" alt="">
-    DRF -> <img src="@/assets/logos/drf-logo.png" width="60px" height="30px" alt="">
-    
-     -->

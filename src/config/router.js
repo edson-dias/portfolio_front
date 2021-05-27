@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from '@/components/templates/Home'
 import Portfolio from '@/components/templates/Portfolio'
+import ProjectById from '@/components/templates/template-components/ProjectById'
 import Curriculum from '@/components/templates/Curriculum'
 import Blog from '@/components/templates/Blog'
 import Sobre from '@/components/templates/Sobre'
@@ -18,6 +19,10 @@ const routes = [
         name: 'portfolio',
         path: '/portfolio',
         component: Portfolio
+    },{
+        name: 'projectById',
+        path: '/portfolio/:id',
+        component: ProjectById
     },{
         name: 'curriculum',
         path: '/curriculum',
