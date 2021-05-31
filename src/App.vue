@@ -36,7 +36,6 @@ export default {
 .main{
   width: 60vw;
   height: 100%;
-  position: relative;
   z-index: 25;
   background-color: rgba(0, 0, 0, 0.450);
 }

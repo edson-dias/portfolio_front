@@ -1,5 +1,5 @@
 <template>
-  <div id="content">
+  <div class="content">
     <header>
       <router-link :class="[{actualPage: actualUrl=='home'}, 'navLinks']" to="/">Home</router-link>
       <router-link :class="[{actualPage: actualUrl=='portfolio'}, 'navLinks']" to="/portfolio">Portfólio</router-link>
@@ -36,6 +36,12 @@ export default {
     margin: 0;
     padding: 0;
   }
+
+  .content{
+    width: 100%;
+    height: 100%;
+  }
+
 
   header{
     position: absolute;
@@ -103,11 +109,6 @@ export default {
 
   .navLinks:hover::after{
     transform: scaleY(1);
-  }
-
-  #content{
-    width: 100%;
-    height: 100%;
   }
 
 </style>
