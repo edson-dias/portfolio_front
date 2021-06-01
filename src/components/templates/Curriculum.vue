@@ -2,7 +2,7 @@
 	<div>
 		<div class="text">
 			<div class="header">
-				<h4 v-for="(f, k) in header" :key="k">{{f}}</h4>
+				<h4 v-for="(h, k) in data.header" :key="k">{{h}}</h4>
 			</div>
 			<div class="resume">
 				<div class="title">
@@ -18,10 +18,59 @@
 				<div class="title">
 					<h3>Formação</h3>
 				</div>
-				<div class="courses" v-for="(f, k) in data.schooling" :key="k">
-
+				<div class="courses">
+					<ul>
+						<li v-for="(f, k) in data.schooling" :key="k">
+							<h3>{{f.title}}</h3>
+							<h3><b>Instituição:</b> {{f.institute}}</h3>
+							<h3><b>Conclusão: </b>{{f.conclusion}}</h3>
+						</li>
+					</ul>
 				</div>
 			</div>
+			<div class="jobs">
+				<div class="title">
+					<h3>Experiência Profissional</h3>
+				</div>
+				<div class="job">
+					<ul>
+						<li v-for="(j, k) in data.jobs" :key="k">
+							<h3>{{j.company}}</h3>
+							<h3><b>Cargo:</b> {{j.job_title}}</h3>
+							<h3><b>Período: </b>{{j.time}}</h3>
+							<h3>Principais Atividades: {{j.main_activities}}</h3>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="languages">
+				<div class="title">
+					<h3>Idiomas</h3>
+				</div>
+				<div class="lang">
+					<ul>
+						<li v-for="(l, k) in data.languages" :key="k">
+							<h3>{{l.language}}</h3>
+							<h3><b>Instituição:</b> {{l.institute}}</h3>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="activities">
+				<div class="title">
+					<h3>Cursos e Atividades Complementares</h3>
+				</div>
+				<div class="activ">
+					<ul>
+						<li v-for="(a, k) in data.activities" :key="k">
+							<h3>{{a}}</h3>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="download">
+			<a :href="data.file"><i class="fas fa-file-pdf"></i> <h3>Download PDF</h3></a>
 		</div>
 	</div>
 </template>
@@ -50,22 +99,26 @@ export default {
 			const header = this.textHandler(dictData.header)
 			const target = dictData.target
 			const resume = this.textHandler(dictData.resume)
+			const schooling = dictData.schooling
+			const jobs = dictData.jobs
+			const languages = dictData.language
+			const activities = this.textHandler(dictData.courses)
+			const file = dictData.files
 
 			data = {
 				'header': header,
 				'target': target,
 				'resume': resume,
+				'schooling': schooling,
+				'jobs': jobs,
+				'languages': languages,
+				'activities': activities,
+				'file': file
 			}
 			return data
 		}
 	},
 	computed: {
-		header(){
-			if(this.pdfData[0]){
-				return this.textHandler(this.pdfData[0].header)
-			}
-			return ''
-		},
 		data(){
 			if(this.pdfData[0]){
 				return this.dataHandler(this.pdfData[0])
@@ -86,7 +139,7 @@ export default {
 		justify-content: flex-start;
 		align-items: center;
 		width: 100%;
-		height: 100vh;
+		height: max-content;
 		font-family: 'Roboto Mono';
 		color: white;
 	}
@@ -97,7 +150,8 @@ export default {
 		align-items: flex-start;
 		width: 80%;
 		height: 100%;
-		margin-top: 100px ;
+		margin-top: 100px;
+		margin-bottom: 50px;
 		background-color: #2f333a96;		
 	}
 	.header{
@@ -118,7 +172,7 @@ export default {
 		align-items: flex-start;
 		width: 100%;
 		height: 40%;
-		margin-top: 50px ;
+		margin-top: 40px ;
 		padding: 0px 20px;
 	}
 	.schooling{
@@ -130,9 +184,60 @@ export default {
 		padding: 0px 20px;
 	}
 	.courses{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 100%;	
+	}
+	.jobs{
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
 		width: 100%;
-		height: 200px;
-		background: aqua;
+		padding: 0px 20px;
+	}
+	.languages{
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 100%;
+		padding: 0px 20px;
+	}
+	.activities{
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 100%;
+		padding: 0px 20px;
+	}
+	.courses h3{
+		font-size: 1rem;
+		font-weight: 400;
+	}
+	.lang{
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+	.jobs h3{
+		font-size: 1rem;
+		font-weight: 400;
+	}
+	.languages h3{
+		font-size: 1rem;
+		font-weight: 400;
+	}
+	.activities h3{
+		font-size: 1rem;
+		font-weight: 400;
+	}
+	.activ{
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
 	}
 	ul{
 		padding-top: 5px;
@@ -140,6 +245,18 @@ export default {
 	li{
 		font-size: 1rem;
 		margin: 8px 0px;
+	}
+	.courses li{
+		margin: 25px 0px;
+	}
+	.jobs li{
+		margin: 25px 0px;
+	}
+	.lang li{
+		margin: 25px 0px;
+	}
+	.activ li{
+		margin: 15px 0px;
 	}
 	.title{
 		display: flex;
@@ -157,7 +274,34 @@ export default {
 		padding: 0px;
 		font-family: 'Roboto';
 		font-size: 1.2rem;
+		font-weight: 500;
 	}
-
+	.download{
+		position: absolute;
+		width: 150px;
+		height: 50px;
+		top: 15%;
+		left: 50%;
+		transform: translate(180%, -50%);
+	}
+	a{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		text-decoration: none;
+	}
+	a i{
+		font-size: 1.6rem;
+		color: rgb(170, 33, 33);	
+	}
+	a h3{
+		font-size: 1rem;
+		margin-left: 10px;
+		color: white;	
+	}
+	a h3:hover{
+		color: rgba(226, 226, 226, 0.829);
+	}
 </style>
 
