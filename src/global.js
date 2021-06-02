@@ -1,4 +1,4 @@
-export const baseEntrypoint = 'http://127.0.0.1:8000'
+export const baseEntrypoint = 'http://34.95.165.23'
 
 export const languagesIcons = {
     'JavaScript': 'fab fa-js',
