@@ -1,4 +1,4 @@
-export const baseEntrypoint = 'http://34.95.165.23'
+export const baseEntrypoint = 'https://efdjr-server.tech'
 
 export const languagesIcons = {
     'JavaScript': 'fab fa-js',
