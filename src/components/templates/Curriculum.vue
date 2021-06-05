@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="text">
+		<div class="text type">
 			<div class="header">
 				<h4 v-for="(h, k) in data.header" :key="k">{{h}}</h4>
 			</div>
@@ -69,8 +69,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="download">
+		<div :class="!stillLoading ? 'download':'downloadi'">
 			<a :href="data.file"><i class="fas fa-file-pdf"></i> <h3>Download PDF</h3></a>
+		</div>
+		<div class="loading" v-if="stillLoading">
+			<Loading/>
 		</div>
 	</div>
 </template>
@@ -78,18 +81,21 @@
 <script>
 import {baseEntrypoint} from '@/global.js'
 import axios from 'axios'
+import Loading from './template-components/Loading.vue'
 
 export default {
 	name: 'Curriculum',
+	components: {Loading},
 	data: function(){
 		return {
+			stillLoading: true,
 			pdfData: {}
 		}
 	},
 	methods: {
 		getPDF(){
 			const url = baseEntrypoint + '/curriculum/'
-			axios.get(url).then(res => this.pdfData = res.data) 
+			axios.get(url).then(res => this.pdfData = res.data).then(this.stillLoading = false)
 		},
 		textHandler(dictString){
 			return dictString.split(';')
@@ -152,7 +158,22 @@ export default {
 		height: 100%;
 		margin-top: 100px;
 		margin-bottom: 50px;
-		background-color: #2f333a96;		
+		background-color: #2f333a96;
+		opacity: 0%;
+
+	}
+	.texti{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 80%;
+		height: 100%;
+		margin-top: 100px;
+		margin-bottom: 50px;
+		background-color: #2f333a96;
+		opacity: 0%;
+		transition: 3s;
 	}
 	.header{
 		display: flex;
@@ -188,7 +209,7 @@ export default {
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
-		width: 100%;	
+		width: 100%;
 	}
 	.jobs{
 		display: flex;
@@ -241,7 +262,7 @@ export default {
 	}
 	ul{
 		padding-top: 5px;
-	}	
+	}
 	li{
 		font-size: 1rem;
 		margin: 8px 0px;
@@ -283,6 +304,40 @@ export default {
 		top: 15%;
 		left: 50%;
 		transform: translate(180%, -50%);
+			opacity: 100%;
+				transition: 6s;
+	}
+	.downloadi{
+		position: absolute;
+				width: 150px;
+				height: 50px;
+				top: 15%;
+				left: 50%;
+				transform: translate(180%, -50%);
+					opacity: 0%;
+						transition: 6s;
+	}
+
+	.type{
+		animation: xablau 1s 1 normal both;
+	}
+	@keyframes xablau{
+		25%{
+			opacity: 25%;
+		}
+		50%{
+			opacity: 50%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+	.loading{
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 	a{
 		display: flex;
@@ -293,15 +348,16 @@ export default {
 	}
 	a i{
 		font-size: 1.6rem;
-		color: rgb(170, 33, 33);	
+		color: rgb(170, 33, 33);
 	}
 	a h3{
 		font-size: 1rem;
 		margin-left: 10px;
-		color: white;	
+		color: white;
 	}
 	a h3:hover{
 		color: rgba(226, 226, 226, 0.829);
 	}
+
 </style>
 

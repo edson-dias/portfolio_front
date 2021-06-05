@@ -1,10 +1,15 @@
 <template>
-  <div></div>
+  <div>
+    <Loading/>
+  </div>
 </template>
 
 <script>
-export default {
+import Loading from './template-components/Loading'
 
+export default {
+  name: 'Sobre',
+  components: {Loading}
 }
 </script>
 

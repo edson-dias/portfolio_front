@@ -8,7 +8,9 @@
       <router-link :class="[{actualPage: actualUrl=='sobre'}, 'navLinks']" to="/sobre">Sobre</router-link>
     </header>
     <section >
+      <transition name="component-fade" mode="in-out">
       <router-view></router-view>
+      </transition>
     </section>
   </div>
 </template>
@@ -109,6 +111,10 @@ export default {
 
   .navLinks:hover::after{
     transform: scaleY(1);
+  }
+
+  .component-fade-enter-active, .component-fade-leave-active {
+    transition: all 0.3s ease;
   }
 
 </style>
