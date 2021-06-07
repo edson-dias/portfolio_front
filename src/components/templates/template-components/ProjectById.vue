@@ -13,7 +13,7 @@
                     <h3>Frameworks</h3>
                     <h3>Links</h3>
                 </div>
-                <div class="squares">                
+                <div class="squares">
                     <div class="square">
                         <div class="icons">
                             <span v-for="(langs, k) in infos.languages" :key="k">
@@ -45,7 +45,7 @@
                 </div>
                 <div id="improvements" v-if="infos.improvements">
                     <h3 class="type">Melhorias Futuras: </h3>
-                    <h4>{{infos.improvements}}</h4>
+                    <a :href="infos.improvements"><i class="far fa-folder-open"></i><h4>Notion</h4></a>
                 </div>
                 <div id="credit" v-if="infos.credit">
                     <h3 class="type">Créditos: </h3>
@@ -77,7 +77,7 @@ export default {
             }
             else{
                 const url = `${baseEntrypoint}/projects/${this.$route.params.id}`
-                axios.get(url).then(res => this.infos = res.data)    
+                axios.get(url).then(res => this.infos = res.data)
             }
         },
         ConvertLanguagesToIcons(dataLanguage){
@@ -93,7 +93,7 @@ export default {
                         'link': linksArray[1],
                     }
                     if(linksDict.title.includes('Github')){
-                        linksDict.icon = 'fab fa-github-square' 
+                        linksDict.icon = 'fab fa-github-square'
                     }else{
                         linksDict.icon = 'fas fa-laptop-code'
                     }
@@ -167,7 +167,7 @@ export default {
         margin: 0px;
         padding: 0px;
         margin-top: 25px;
-        
+
     }
     .title{
         display: flex;
@@ -221,7 +221,7 @@ export default {
     .icons{
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
         width: 100%;
         height: 100%;
@@ -229,14 +229,14 @@ export default {
     .frameworks{
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         width: 100%;
         height: 100%;
     }
     .links{
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
         width: 100%;
         height: 100%;
@@ -285,7 +285,7 @@ export default {
     .icons i{
         margin-right: 15px;
         font-size: 1.4rem;
-        color: white;   
+        color: white;
     }
     .frameworks img{
         margin-right: 15px;
@@ -295,7 +295,7 @@ export default {
     .links i{
         margin-right: 15px;
         font-size: 1.4rem;
-        color: white;  
+        color: white;
     }
 
     h2, h3, h4{
@@ -317,11 +317,20 @@ export default {
         margin: 4px 0px;
     }
     #carousel{
-        width: 65%;        
+        width: 65%;
     }
     a{
         display: flex;
         text-decoration: none;
     }
+    a:hover{
+		color: rgba(255, 255, 255, 0.5);
+    }
+	a h4:hover{
+		color: rgba(255, 255, 255, 0.5);
+	}
+	a i{
+		margin-right: 10px;
+	}
 
-</style>     
+</style>

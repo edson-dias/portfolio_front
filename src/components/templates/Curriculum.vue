@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="text type">
+		<div class="text" v-if="!stillLoading">
 			<div class="header">
 				<h4 v-for="(h, k) in data.header" :key="k">{{h}}</h4>
 			</div>
@@ -69,10 +69,10 @@
 				</div>
 			</div>
 		</div>
-		<div :class="!stillLoading ? 'download':'downloadi'">
+		<div class="download" v-if="!stillLoading">
 			<a :href="data.file"><i class="fas fa-file-pdf"></i> <h3>Download PDF</h3></a>
 		</div>
-		<div class="loading" v-if="stillLoading">
+		<div class="loading" v-show="stillLoading">
 			<Loading/>
 		</div>
 	</div>
@@ -88,14 +88,13 @@ export default {
 	components: {Loading},
 	data: function(){
 		return {
-			stillLoading: true,
-			pdfData: {}
+			pdfData: {},
 		}
 	},
 	methods: {
 		getPDF(){
 			const url = baseEntrypoint + '/curriculum/'
-			axios.get(url).then(res => this.pdfData = res.data).then(this.stillLoading = false)
+			axios.get(url).then(res => this.pdfData = res.data)
 		},
 		textHandler(dictString){
 			return dictString.split(';')
@@ -130,7 +129,14 @@ export default {
 				return this.dataHandler(this.pdfData[0])
 			}
 			return ''
-		}
+		},
+		stillLoading(){
+			if(Object.values(this.pdfData).length!=0){
+				return false
+			}else{
+				return true
+			}
+		},
 	},
 	mounted(){
 		this.getPDF()
@@ -159,21 +165,7 @@ export default {
 		margin-top: 100px;
 		margin-bottom: 50px;
 		background-color: #2f333a96;
-		opacity: 0%;
-
-	}
-	.texti{
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
-		width: 80%;
-		height: 100%;
-		margin-top: 100px;
-		margin-bottom: 50px;
-		background-color: #2f333a96;
-		opacity: 0%;
-		transition: 3s;
+		transition: 4s;
 	}
 	.header{
 		display: flex;
@@ -288,7 +280,7 @@ export default {
 		height: 30px;
 		padding-left: 10px;
 		border: 0px;
-		background-color: rgba(30, 93, 210, 0.096);
+		background-color: rgba(30, 93, 210, 0.095);
 	}
 	.title h3{
 		margin: 0px;
@@ -301,36 +293,10 @@ export default {
 		position: absolute;
 		width: 150px;
 		height: 50px;
-		top: 15%;
-		left: 50%;
-		transform: translate(180%, -50%);
-			opacity: 100%;
-				transition: 6s;
-	}
-	.downloadi{
-		position: absolute;
-				width: 150px;
-				height: 50px;
-				top: 15%;
-				left: 50%;
-				transform: translate(180%, -50%);
-					opacity: 0%;
-						transition: 6s;
-	}
-
-	.type{
-		animation: xablau 1s 1 normal both;
-	}
-	@keyframes xablau{
-		25%{
-			opacity: 25%;
-		}
-		50%{
-			opacity: 50%;
-		}
-		100%{
-			opacity: 100%;
-		}
+		top: 120px;
+		left: 65%;
+		transition: 2s;
+		transition-delay: 5s;
 	}
 	.loading{
 		width: 100vw;
