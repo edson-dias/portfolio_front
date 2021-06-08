@@ -49,7 +49,9 @@
                 </div>
                 <div id="credit" v-if="infos.credit">
                     <h3 class="type">Créditos: </h3>
-                    <h4>{{infos.credit}}</h4>
+					<div id="text-credits">
+						<h4 v-for="(c, k) in credits" :key="k">{{c}}</h4>
+					</div>
                 </div>
             </div>
         </div>
@@ -115,6 +117,13 @@ export default {
                 })
                 return frameworks
             }
+        },
+        HandleCredit(){
+			let credits = []
+			if (this.infos){
+				credits = this.infos.credit.split(';')
+			}
+			return credits
         }
     },
     computed: {
@@ -126,6 +135,9 @@ export default {
         },
         frameworks(){
             return this.ConvertFrameworks(this.infos.frameworks)
+        },
+        credits(){
+			return this.HandleCredit()
         }
 
     },
@@ -331,6 +343,10 @@ export default {
 	}
 	a i{
 		margin-right: 10px;
+	}
+	#text-credits h4{
+		margin-left: 5px;
+		margin-bottom: 10px;
 	}
 
 </style>
