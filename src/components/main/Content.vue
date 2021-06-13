@@ -4,8 +4,6 @@
       <router-link :class="[{actualPage: actualUrl=='home'}, 'navLinks']" to="/">Home</router-link>
       <router-link :class="[{actualPage: actualUrl=='portfolio'}, 'navLinks']" to="/portfolio">Portfólio</router-link>
       <router-link :class="[{actualPage: actualUrl=='curriculum'}, 'navLinks']" to="/curriculum">Curriculum</router-link>
-      <router-link :class="[{actualPage: actualUrl=='blog'}, 'navLinks']" to="/blog">Blog</router-link>
-      <router-link :class="[{actualPage: actualUrl=='sobre'}, 'navLinks']" to="/sobre">Sobre</router-link>
     </header>
     <section >
       <transition name="component-fade" mode="in-out">
@@ -61,7 +59,7 @@ export default {
     padding: 8px 35px;
     margin: 20px 0;
     transition: .5s;
-    
+
     text-align: center;
     text-decoration: none;
     font-family: 'Roboto';
