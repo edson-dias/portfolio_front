@@ -1,7 +1,7 @@
 <template>
   <div id="intro">
     <div class="card">
-      <div class="img"><img src="../../assets/self.jpeg" alt="self" width="220" height="280"></div>
+      <div class="img"><img src="../../assets/self.jpeg" alt="self" width="220" height="300"></div>
       <div class="infos">
         <TypeWriting/>
       </div>
@@ -26,11 +26,11 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;  
+    align-items: center;
     width: 100%;
     height: 100vh;
   }
-  
+
   .card{
     display: flex;
     flex-direction: row;
@@ -41,7 +41,7 @@ export default {
     margin-top: 15%;
     background-color: #2f333a88;
     color: white;
-    
+
   }
 
   .img{
@@ -70,7 +70,7 @@ export default {
     margin-top: 50px;
     padding: 0;
   }
-  
-  
+
+
 
 </style>
