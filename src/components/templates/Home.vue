@@ -1,9 +1,11 @@
 <template>
   <div id="intro">
     <div class="card">
-      <div class="img"><img src="../../assets/self.jpeg" alt="self" width="220" height="300"></div>
       <div class="infos">
-        <TypeWriting/>
+        <TypeWriting :typeAnimationOn="animation"/>
+      </div>
+      <div class="icon">
+        <i class="fas fa-fast-forward" @click="fastFoward"></i>
       </div>
     </div>
   </div>
@@ -15,7 +17,15 @@ import TypeWriting from './template-components/TypeWriting'
 export default {
   name: 'Home',
   components: {TypeWriting},
+  data: function(){
+    return {
+      animation: true
+    }
+  },
   methods: {
+    fastFoward(){
+      this.animation = !this.animation
+    }
   }
 }
 </script>
@@ -44,22 +54,6 @@ export default {
 
   }
 
-  .img{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 40%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-  }
-
-  .img img{
-    margin-left: 25%;
-    border: 2px rgba(255, 255, 255, 0.171) solid;
-    border-radius: 5px;
-  }
-
   .infos{
     display: flex;
     flex-direction: column;
@@ -67,10 +61,18 @@ export default {
     justify-content: flex-start;
     width: 60%;
     height: 100%;
-    margin-top: 50px;
-    padding: 0;
+    padding-top: 50px;
+    padding-left: 150px;
   }
 
-
+  .icon{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 40%;
+    height: 100%;
+    padding-right: 60px;
+    padding-top: 50px;
+  }
 
 </style>
