@@ -2,7 +2,7 @@
   <div class="writing-section">
         <h2 :class="{typingAnimation: typeAnimationOn, line: true}">Edson Flausino Dias Junior</h2>
         <h3 :class="{typingAnimationTwo: typeAnimationOn, line: true, mgTop25: true}">Desenvolvedor Jr - <i class="fab fa-python"></i> <i class="fab fa-js"></i></h3>
-        <h3 :class="{typingAnimationThree: typeAnimationOn, line: true}">Engenheiro de Controle e Automação</h3>
+        <h3 :class="{typingAnimationThree: typeAnimationOn, line: true}">Eng. de Controle e Automação</h3>
         <span :class="{typingAnimationFour: typeAnimationOn, line: true, mgTop30: true}"><a href="https://github.com/edson-dias"><i class="fab fa-github"></i> GitHub</a></span>
         <span :class="{typingAnimationFive: typeAnimationOn, line: true, mgTop5: true}"><a href="https://linkedin.com/in/edson-flausino-dias-junior"><i class="fab fa-linkedin-in"></i> LinkedIn</a></span>
         <span :class="{typingAnimationSix: typeAnimationOn, line: true, mgTop5: true}"><a href="https://twitter.com/edson_fdias"><i class="fab fa-twitter"></i> Twitter</a></span>
@@ -123,7 +123,7 @@ export default {
       width: 0;
     }
     to {
-      width: 21em;
+      width: 17em;
     }
   }
   @keyframes typing-four {
