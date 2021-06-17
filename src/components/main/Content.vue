@@ -1,11 +1,22 @@
 <template>
   <div class="content">
     <header>
-      <router-link :class="[{actualPage: actualUrl=='home'}, 'navLinks']" to="/">Home</router-link>
-      <router-link :class="[{actualPage: actualUrl=='portfolio'}, 'navLinks']" to="/portfolio">Portfólio</router-link>
-      <router-link :class="[{actualPage: actualUrl=='curriculum'}, 'navLinks']" to="/curriculum">Curriculum</router-link>
+        <div v-if="windowSize<768">
+			<input type="checkbox" id="title1" />
+			<label for="title1"><i class="fas fa-caret-square-right"></i></label>
+			<div class="contentt">
+				<router-link :class="[{actualPage: actualUrl=='home'}, 'navLinks']" to="/">Home</router-link>
+				<router-link :class="[{actualPage: actualUrl=='portfolio'}, 'navLinks']" to="/portfolio">Portfólio</router-link>
+				<router-link :class="[{actualPage: actualUrl=='curriculum'}, 'navLinks']" to="/curriculum">Curriculum</router-link>
+			</div>
+		</div>
+		<div v-else>
+			<router-link :class="[{actualPage: actualUrl=='home'}, 'navLinks']" to="/">Home</router-link>
+			<router-link :class="[{actualPage: actualUrl=='portfolio'}, 'navLinks']" to="/portfolio">Portfólio</router-link>
+			<router-link :class="[{actualPage: actualUrl=='curriculum'}, 'navLinks']" to="/curriculum">Curriculum</router-link>
+		</div>
     </header>
-    <section >
+    <section>
       <transition name="component-fade" mode="in-out">
       <router-view></router-view>
       </transition>
@@ -23,6 +34,9 @@ export default {
   computed: {
     actualUrl(){
       return this.$route.name
+    },
+    windowSize(){
+      return window.innerWidth
     }
   }
 }
@@ -38,12 +52,60 @@ export default {
   }
 
   .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     width: 100%;
     height: 100%;
   }
 
 
   header{
+    display: flex;
+    width: 100%;
+	height: 10%;
+  }
+
+  section{
+	display: flex;
+	flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 90%;
+  }
+
+	input {
+		display: none;
+	}
+	label {
+		display: block;
+		cursor: pointer;
+		color: rgba(255, 255, 255, 0.9);
+		transition: ease 1s;
+	}
+	label i{
+		font-size: 1.2rem;
+	}
+	label:hover i{
+		color: rgba(255, 255, 255, 0.5);
+	}
+	.contentt {
+		background: #ef4;
+	}
+	input + label + .contentt {
+		opacity: 0;
+		width: 0%;
+		transition: ease 1s;
+	}
+	input:checked + label + .contentt {
+		opacity: 1;
+		width: 100%;
+	}
+
+
+@media only screen and (min-width: 768px) {
+
+  header div{
     position: absolute;
     top: 50px;
     left: 50%;
@@ -53,8 +115,6 @@ export default {
     display: flex;
   }
 
-
-@media only screen and (min-width: 768px) {
   .navLinks{
     position: relative;
     display: block;

@@ -45,7 +45,7 @@ export default {
 <style scoped>
 	.card{
 		position: relative;
-		max-width: 350px;
+		width: 320px;
 		height: 420px;
 		background: #2f333a88;
 		margin: 20px 10px;

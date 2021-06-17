@@ -41,7 +41,7 @@ export default {
 
 .main{
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	padding: 0;
 	margin: 0;
     background-color: rgba(0, 0, 0, 0.450);
