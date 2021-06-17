@@ -45,7 +45,7 @@ export default {
 
   header{
     position: absolute;
-    top: 4%;
+    top: 50px;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
@@ -53,6 +53,8 @@ export default {
     display: flex;
   }
 
+
+@media only screen and (min-width: 768px) {
   .navLinks{
     position: relative;
     display: block;
@@ -114,5 +116,7 @@ export default {
   .component-fade-enter-active, .component-fade-leave-active {
     transition: all 0.3s ease;
   }
+
+}
 
 </style>

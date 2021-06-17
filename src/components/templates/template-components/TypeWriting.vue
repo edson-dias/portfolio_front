@@ -4,7 +4,7 @@
         <h3 :class="{typingAnimationTwo: typeAnimationOn, line: true, mgTop25: true}">Desenvolvedor Jr - <i class="fab fa-python"></i> <i class="fab fa-js"></i></h3>
         <h3 :class="{typingAnimationThree: typeAnimationOn, line: true}">Engenheiro de Controle e Automação</h3>
         <span :class="{typingAnimationFour: typeAnimationOn, line: true, mgTop30: true}"><a href="https://github.com/edson-dias"><i class="fab fa-github"></i> GitHub</a></span>
-        <span :class="{typingAnimationFive: typeAnimationOn, line: true, mgTop5}"><a href="https://linkedin.com/in/edson-flausino-dias-junior"><i class="fab fa-linkedin-in"></i> LinkedIn</a></span>
+        <span :class="{typingAnimationFive: typeAnimationOn, line: true, mgTop5: true}"><a href="https://linkedin.com/in/edson-flausino-dias-junior"><i class="fab fa-linkedin-in"></i> LinkedIn</a></span>
         <span :class="{typingAnimationSix: typeAnimationOn, line: true, mgTop5: true}"><a href="https://twitter.com/edson_fdias"><i class="fab fa-twitter"></i> Twitter</a></span>
         <span :class="{typingAnimationSeven: typeAnimationOn, line: true, mgTop5: true}"><a href="mailto: edson-fdias@outlook.com"><i class="fas fa-envelope"></i> E-mail</a></span>
   </div>

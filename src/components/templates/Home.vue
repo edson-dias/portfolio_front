@@ -35,34 +35,63 @@ export default {
   #intro{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
   }
 
-  .card{
+.card{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     width: 90%;
-    height: 40%;
-    margin-top: 15%;
+    height: 50%;
+    background: #2f333a88;
+    color: white;
+}
+
+  .infos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+    padding-left: 20px;
+  }
+
+  .icon{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 40%;
+    height: 100%;
+    padding-right: 20px;
+    padding-top: 50px;
+  }
+
+@media only screen and (min-width: 768px){
+  .card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+    height: 400px;
     background-color: #2f333a88;
     color: white;
-
   }
 
   .infos{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     width: 60%;
     height: 100%;
-    padding-top: 50px;
-    padding-left: 150px;
+    padding-left: 15%;
   }
 
   .icon{
@@ -74,5 +103,5 @@ export default {
     padding-right: 60px;
     padding-top: 50px;
   }
-
+}
 </style>
