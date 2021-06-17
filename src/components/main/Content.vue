@@ -1,16 +1,14 @@
 <template>
   <div class="content">
     <header>
-        <div v-if="windowSize<768">
-			<input type="checkbox" id="title1" />
-			<label for="title1"><i class="fas fa-caret-square-right"></i></label>
-			<div class="contentt">
+        <div id="cellphone" v-if="windowSize<768">
+			<div class="navBar">
 				<router-link :class="[{actualPage: actualUrl=='home'}, 'navLinks']" to="/">Home</router-link>
 				<router-link :class="[{actualPage: actualUrl=='portfolio'}, 'navLinks']" to="/portfolio">Portfólio</router-link>
 				<router-link :class="[{actualPage: actualUrl=='curriculum'}, 'navLinks']" to="/curriculum">Curriculum</router-link>
 			</div>
 		</div>
-		<div v-else>
+		<div id="desktop" v-else>
 			<router-link :class="[{actualPage: actualUrl=='home'}, 'navLinks']" to="/">Home</router-link>
 			<router-link :class="[{actualPage: actualUrl=='portfolio'}, 'navLinks']" to="/portfolio">Portfólio</router-link>
 			<router-link :class="[{actualPage: actualUrl=='curriculum'}, 'navLinks']" to="/curriculum">Curriculum</router-link>
@@ -29,6 +27,12 @@ export default {
   name: 'Content',
   data: function(){
     return{
+      iconMenu: 'fas fa-angle-double-right'
+    }
+  },
+  methods: {
+    changeIcon(){
+      this.iconMenu==='fas fa-angle-double-right' ? this.iconMenu='fas fa-angle-double-left' : this.iconMenu='fas fa-angle-double-right'
     }
   },
   computed: {
@@ -37,8 +41,9 @@ export default {
     },
     windowSize(){
       return window.innerWidth
-    }
-  }
+    },
+  },
+
 }
 </script>
 
@@ -59,11 +64,10 @@ export default {
     height: 100%;
   }
 
-
   header{
     display: flex;
     width: 100%;
-	height: 10%;
+	height: 5%;
   }
 
   section{
@@ -71,8 +75,14 @@ export default {
 	flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    height: 90%;
+    height: 95%;
   }
+
+  .navIcon{
+
+
+  }
+
 
 	input {
 		display: none;
@@ -84,28 +94,71 @@ export default {
 		transition: ease 1s;
 	}
 	label i{
-		font-size: 1.2rem;
+		font-size: 1.5rem;
 	}
 	label:hover i{
 		color: rgba(255, 255, 255, 0.5);
 	}
 	.contentt {
-		background: #ef4;
+		display: none;
+		transition: 1s;
+		justify-content: space-around;
 	}
-	input + label + .contentt {
-		opacity: 0;
-		width: 0%;
-		transition: ease 1s;
-	}
+	.navLinks{
+		text-align: center;
+		text-decoration: none;
+		font-family: 'Roboto';
+		font-size: 1.2rem;
+		font-weight: bold;
+		color: rgba(255, 255, 255, 0.5);
+  }
+
+  .actualPage{
+    transition: .5s;
+    color: rgba(235, 235, 235, 0.9);
+    background: rgba(88, 88, 88, 0.144);
+  }
+
+
+
 	input:checked + label + .contentt {
-		opacity: 1;
-		width: 100%;
+		display: flex;
+
+		animation: opening 2s normal both;
 	}
+
+	#cellphone{
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		transition: ease 1s;
+  }
+
+  @keyframes opening {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+  @keyframes closing {
+    from {
+      width: 100%;
+      opacity: 1;
+    }
+    to {
+      width: 0;
+      opacity: 1;
+    }
+  }
 
 
 @media only screen and (min-width: 768px) {
 
-  header div{
+  #desktop{
     position: absolute;
     top: 50px;
     left: 50%;
