@@ -2,7 +2,8 @@
   <div class="content">
     <header>
         <div id="cellphone" v-if="windowSize<768">
-			<div class="navBar">
+            <i @click="changeNavBar" :class="iconMenu"></i>
+			<div :class="isExpanded">
 				<router-link :class="[{actualPage: actualUrl=='home'}, 'navLinks']" to="/">Home</router-link>
 				<router-link :class="[{actualPage: actualUrl=='portfolio'}, 'navLinks']" to="/portfolio">Portfólio</router-link>
 				<router-link :class="[{actualPage: actualUrl=='curriculum'}, 'navLinks']" to="/curriculum">Curriculum</router-link>
@@ -27,12 +28,14 @@ export default {
   name: 'Content',
   data: function(){
     return{
-      iconMenu: 'fas fa-angle-double-right'
+      iconMenu: 'fas fa-angle-double-right',
+      isExpanded: 'hiddenNav',
     }
   },
   methods: {
-    changeIcon(){
-      this.iconMenu==='fas fa-angle-double-right' ? this.iconMenu='fas fa-angle-double-left' : this.iconMenu='fas fa-angle-double-right'
+    changeNavBar(){
+		this.isExpanded==='expandedNav' ? this.isExpanded='hiddenNav' : this.isExpanded='expandedNav'
+		this.iconMenu==='fas fa-angle-double-right' ? this.iconMenu='fas fa-angle-double-left' : this.iconMenu='fas fa-angle-double-right'
     }
   },
   computed: {
@@ -75,63 +78,50 @@ export default {
 	flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    height: 95%;
+    height: 100%;
   }
 
-  .navIcon{
-
-
+  #cellphone{
+	position: absolute;
+	top: 20px;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 50px;
+	padding: 5px 20px;
   }
 
+  #cellphone i {
+	cursor: pointer;
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 1.5rem;
+  }
+  #cellphone i:hover{
+		color: rgba(255, 255, 255, 0.5);
+	}
 
-	input {
-		display: none;
-	}
-	label {
-		display: block;
-		cursor: pointer;
-		color: rgba(255, 255, 255, 0.9);
-		transition: ease 1s;
-	}
-	label i{
-		font-size: 1.5rem;
-	}
-	label:hover i{
-		color: rgba(255, 255, 255, 0.5);
-	}
-	.contentt {
-		display: none;
-		transition: 1s;
-		justify-content: space-around;
-	}
-	.navLinks{
-		text-align: center;
-		text-decoration: none;
-		font-family: 'Roboto';
-		font-size: 1.2rem;
-		font-weight: bold;
-		color: rgba(255, 255, 255, 0.5);
+  .navLinks {
+	text-align: center;
+	text-decoration: none;
+	font-family: 'Roboto';
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: rgba(255, 255, 255, 0.5);
   }
 
   .actualPage{
-    transition: .5s;
-    color: rgba(235, 235, 235, 0.9);
-    background: rgba(88, 88, 88, 0.144);
+    color: rgba(235, 235, 235, 0.95);
   }
 
-
-
-	input:checked + label + .contentt {
-		display: flex;
-
-		animation: opening 2s normal both;
-	}
-
-	#cellphone{
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		transition: ease 1s;
+  .expandedNav {
+	display: flex;
+	height: 100%;
+	justify-content: space-around;
+	animation: opening 2s normal both;
+  }
+  .hiddenNav {
+  height: 100%;
+	display: none;
   }
 
   @keyframes opening {
@@ -141,16 +131,6 @@ export default {
     }
     to {
       width: 100%;
-      opacity: 1;
-    }
-  }
-  @keyframes closing {
-    from {
-      width: 100%;
-      opacity: 1;
-    }
-    to {
-      width: 0;
       opacity: 1;
     }
   }
