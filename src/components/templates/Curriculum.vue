@@ -145,6 +145,7 @@ export default {
 </script>
 
 <style scoped>
+
 	div{
 		display: flex;
 		flex-direction: column;
@@ -160,10 +161,10 @@ export default {
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
-		width: 80%;
+		width: 95%;
 		height: 100%;
 		margin-top: 100px;
-		margin-bottom: 50px;
+		margin-bottom: 20px;
 		background-color: #2f333a96;
 		transition: 4s;
 	}
@@ -172,29 +173,29 @@ export default {
 		justify-content: flex-start;
 		align-items: flex-start;
 		width: 100%;
-		height: 20%;
-		padding: 20px;
+		height: 250px;
+		padding: 10px;
 	}
 	.header h4{
-		font-size: 1rem;
-		margin: 10px 0px;
+		font-size: 0.9rem;
+		margin: 9px 0px;
 	}
 	.resume{
 		display: flex;
 		justify-content: flex-start;
 		align-items: flex-start;
 		width: 100%;
-		height: 40%;
-		margin-top: 40px ;
-		padding: 0px 20px;
+		height: 450px;
+		margin-top: 5px ;
+		padding: 0px;
 	}
 	.schooling{
 		display: flex;
 		justify-content: flex-start;
 		align-items: flex-start;
 		width: 100%;
-		height: 40%;
-		padding: 0px 20px;
+		height: 300px;
+		padding: 0px;
 	}
 	.courses{
 		display: flex;
@@ -208,24 +209,24 @@ export default {
 		justify-content: flex-start;
 		align-items: flex-start;
 		width: 100%;
-		padding: 0px 20px;
+		padding: 0px;
 	}
 	.languages{
 		display: flex;
 		justify-content: flex-start;
 		align-items: flex-start;
 		width: 100%;
-		padding: 0px 20px;
+		padding: 0px;
 	}
 	.activities{
 		display: flex;
 		justify-content: flex-start;
 		align-items: flex-start;
 		width: 100%;
-		padding: 0px 20px;
+		padding: 0px;
 	}
 	.courses h3{
-		font-size: 1rem;
+		font-size: 0.9rem;
 		font-weight: 400;
 	}
 	.lang{
@@ -235,15 +236,15 @@ export default {
 		align-items: flex-start;
 	}
 	.jobs h3{
-		font-size: 1rem;
+		font-size: 0.9rem;
 		font-weight: 400;
 	}
 	.languages h3{
-		font-size: 1rem;
+		font-size: 0.9rem;
 		font-weight: 400;
 	}
 	.activities h3{
-		font-size: 1rem;
+		font-size: 0.9rem;
 		font-weight: 400;
 	}
 	.activ{
@@ -256,7 +257,7 @@ export default {
 		padding-top: 5px;
 	}
 	li{
-		font-size: 1rem;
+		font-size: 0.9rem;
 		margin: 8px 0px;
 	}
 	.courses li{
@@ -286,15 +287,15 @@ export default {
 		margin: 0px;
 		padding: 0px;
 		font-family: 'Roboto';
-		font-size: 1.2rem;
+		font-size: 1rem;
 		font-weight: 500;
 	}
 	.download{
 		position: absolute;
 		width: 150px;
 		height: 50px;
-		top: 120px;
-		left: 65%;
+		top: 65px;
+		left: 185px;
 		transition: 2s;
 		transition-delay: 5s;
 	}
@@ -313,17 +314,83 @@ export default {
 		text-decoration: none;
 	}
 	a i{
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 		color: rgb(170, 33, 33);
 	}
 	a h3{
-		font-size: 1rem;
+		font-size: 0.9rem;
 		margin-left: 10px;
 		color: white;
 	}
 	a h3:hover{
 		color: rgba(226, 226, 226, 0.829);
 	}
+
+
+
+@media only screen and (min-width: 768px){
+
+	.text{
+		width: 80%;
+	}
+	.header{
+		height: 20%;
+		padding: 20px;
+	}
+	.header h4{
+		font-size: 1rem;
+		margin: 10px 0px;
+	}
+	.resume{
+		height: 40%;
+		margin-top: 40px ;
+		padding: 0px 20px;
+	}
+	.schooling{
+		height: 40%;
+		padding: 0px 20px;
+	}
+	.jobs{
+		padding: 0px 20px;
+	}
+	.languages{
+		padding: 0px 20px;
+	}
+	.activities{
+		padding: 0px 20px;
+	}
+	.courses h3{
+		font-size: 1rem;
+	}
+	.jobs h3{
+		font-size: 1rem;
+	}
+	.languages h3{
+		font-size: 1rem;
+	}
+	.activities h3{
+		font-size: 1rem;
+	}
+	li{
+		font-size: 1rem;
+	}
+	.title h3{
+		font-size: 1.2rem;
+	}
+	.download{
+		top: 120px;
+		left: 65%;
+	}
+	a i{
+		font-size: 1.6rem;
+	}
+	a h3{
+		font-size: 1rem;
+	}
+
+
+
+}
 
 </style>
 
