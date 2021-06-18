@@ -65,12 +65,7 @@ export default {
     justify-content: flex-start;
     width: 100%;
     height: 100%;
-  }
 
-  header{
-    display: flex;
-    width: 100%;
-	height: 5%;
   }
 
   section{

@@ -47,11 +47,15 @@ export default {
 </script>
 
 <style scoped>
+
   section{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     padding: 0;
     margin: 0px;
+        height: max-content;
+
+
   }
 
   .cards-section{
@@ -59,8 +63,7 @@ export default {
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    padding-top: 10%;
-    margin: 0;
+    margin-top: 100px;
   }
   .loading{
   width: 100%;
@@ -71,4 +74,19 @@ export default {
   }
 
 
+@media only screen and (min-width: 768px){
+  section{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0px;
+  }
+
+  .cards-section{
+    padding-top: 10%;
+    margin: 0;
+  }
+}
+
 </style>
+

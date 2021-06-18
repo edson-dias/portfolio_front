@@ -6,7 +6,7 @@
             </div>
             <Carousel id="carousel" :entrypoint="entrypoint" :endpoint="infos.project_image"/>
         </div>
-        <div class="infos">
+        <div v-if="windowSize>768" class="infos">
             <div class="bar">
                 <div class="subtitles">
                     <h3>Linguagens</h3>
@@ -55,6 +55,59 @@
                 </div>
             </div>
         </div>
+
+
+        <div v-else class="infos">
+            <div class="topics">
+                <div class="subs">
+                    <h3>Linguagens</h3>
+                </div>
+                <div class="content">
+                  <span class="contentSpan" v-for="(langs, k) in infos.languages" :key="k">
+                    <i :class="ConvertLanguagesToIcons(langs)"></i><h4>{{langs}}</h4>
+                  </span>
+                </div>
+            </div>
+            <div class="topics">
+                <div class="subs">
+                    <h3>Frameworks</h3>
+                </div>
+                <div class="content">
+					<span class="contentSpan" v-for="(img, k) in frameworks" :key="k" >
+						<img :src="`${entrypoint}${img.link}`" width="35px"  height="25px" alt="">
+						<h4>{{img.title}}</h4>
+					</span>
+                </div>
+            </div>
+
+            <div class="topics">
+                <div class="subs">
+                    <h3>Links</h3>
+                </div>
+                <div class="content">
+                  <span class="contentSpan" v-for="(link, k) in links" :key="k">
+					<a :href="link.link"><i :class="link.icon"></i><h4>{{link.title}}</h4></a>
+                  </span>
+                </div>
+            </div>
+
+			<div class="text">
+				<div id="summary" v-if="infos.summary">
+					<h3 class="type">Resumo: </h3>
+					<h4>{{infos.summary}}</h4>
+				</div>
+				<div id="improvements" v-if="infos.improvements">
+					<h3 class="type">Melhorias Futuras: </h3>
+					<a :href="infos.improvements"><i class="far fa-folder-open"></i><h4>Notion</h4></a>
+				</div>
+				<div id="credit" v-if="infos.credit">
+					<h3 class="type">Créditos: </h3>
+					<div id="text-credits">
+						<h4 v-for="(c, k) in credits" :key="k">{{c}}</h4>
+					</div>
+				</div>
+			</div>
+		</div>
   </div>
 </template>
 
@@ -138,6 +191,9 @@ export default {
         },
         credits(){
 			return this.HandleCredit()
+        },
+        windowSize(){
+			return window.innerWidth
         }
 
     },
@@ -148,6 +204,8 @@ export default {
 </script>
 
 <style scoped>
+
+
     .projects{
         box-sizing: border-box;
         display: flex;
@@ -164,9 +222,18 @@ export default {
         justify-content: flex-start;
         align-items: center;
         width: 100%;
-        height: 50%;
+        height: 480px;
         margin: 0px;
         padding-top: 80px;
+    }
+    .title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 95%;
+        height: 35px;
+        margin: 20px 0px;
+        background: rgba(63, 63, 63, 0.664);
     }
     .infos{
         box-sizing: border-box;
@@ -175,69 +242,225 @@ export default {
         justify-content: flex-start;
         align-items: center;
         width: 100%;
-        height: 50%;
         margin: 0px;
         padding: 0px;
-        margin-top: 25px;
-
     }
-    .title{
+    .subs{
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 65%;
-        height: 35px;
-        margin: 20px 0px;
+        width: 100%;
+        height: 40px;
+        border-bottom: 1px solid #fff;
+        background: #444;
+    }
+
+    .topics{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 95%;
+		margin-bottom: 30px;
         background: rgba(63, 63, 63, 0.664);
     }
-    .subtitles{
+    .content{
         display: flex;
         flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        margin-bottom: 10px;
         width: 100%;
-        height: 20%;
-        margin-left: 10%;
     }
-    .subtitles h3{
-        width: 33.3%;
-        height: 100%;
-        border-bottom: 0px;
+    .content i{
+        margin-right: 10px;
+        font-size: 1.4rem;
+        color: white;
     }
-    .bar{
+    .contentSpan{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+		align-items: center;
+        width:50%;
+        padding: 10px 5px;
+    }
+	.contentSpan img{
+        margin-right: 10px;
+        border-radius: 2px;
+    }
+    a i{
+		margin-right: 10px;
+	}
+
+    .text{
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        width: 65%;
-        height: 180px;
-        padding: 10px 20px;
+        width: 95%;
+        height: 280px;
+        margin-top: 25px;
         background: rgba(63, 63, 63, 0.664);
-    }
-    .squares{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        margin-left: 10%;
-    }
-    .square{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 33.3%;
-        height: 100%;
         padding: 0px;
+        margin-bottom: 30px;
+    }
+    #summary{
+        display: flex;
+        flex-grow: 2;
+        width: 100%;
+        margin: 0px;
+        padding: 10px;
+        text-align: justify;
+        border-top: 0px;
+    }
+    #improvements{
+        display: flex;
+        width: 100%;
+        flex-grow: 1;
+        margin: 0px;
+        padding: 10px;
+        text-align: justify;
+        border-top: 0px;
+    }
+    #credit{
+        display: flex;
+        width: 100%;
+        flex-grow: 1;
+        margin: 0px;
+        padding: 10px;
+        text-align: justify;
+        border-top: 0px;
+    }
+    .type{
+        height: 100%;
+        width: 100px;
+    }
+
+
+    .links i{
+        margin-right: 15px;
+        font-size: 1.4rem;
+        color: white;
+    }
+
+    h2, h3, h4{
+        font-family: 'Roboto Mono';
+        color: white;
         margin: 0px;
     }
-    .icons{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        width: 100%;
-        height: 100%;
+    h2{
+        font-size: 1.2rem;
     }
+    h3{
+        font-size: 0.9rem;
+    }
+    h4{
+        font-size: 0.8rem;
+    }
+
+    #carousel{
+        width: 95%;
+    }
+    a{
+        display: flex;
+        text-decoration: none;
+    }
+    a:hover{
+		color: rgba(255, 255, 255, 0.5);
+    }
+	a h4:hover{
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	#text-credits h4{
+		margin-left: 5px;
+		margin-bottom: 10px;
+	}
+
+
+@media only screen and (min-width: 768px){
+
+	.slides{
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		height: 50%;
+		margin: 0px;
+		padding-top: 80px;
+	}
+	.infos{
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		height: 50%;
+		margin: 0px;
+		padding: 0px;
+		margin-top: 25px;
+	}
+	.title{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 65%;
+		height: 35px;
+		margin: 20px 0px;
+		background: rgba(63, 63, 63, 0.664);
+	}
+	.subtitles{
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		height: 20%;
+		margin-left: 10%;
+	}
+	.subtitles h3{
+		width: 33.3%;
+		height: 100%;
+		border-bottom: 0px;
+	}
+	.bar{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 65%;
+		height: 180px;
+		padding: 10px 20px;
+		background: rgba(63, 63, 63, 0.664);
+	}
+	.squares{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		margin-left: 10%;
+	}
+	.square{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 33.3%;
+		height: 100%;
+		padding: 0px;
+		margin: 0px;
+	}
+	.icons{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 100%;
+		height: 100%;
+	}
     .frameworks{
         display: flex;
         flex-direction: column;
@@ -348,5 +571,5 @@ export default {
 		margin-left: 5px;
 		margin-bottom: 10px;
 	}
-
+}
 </style>
