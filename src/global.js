@@ -1,5 +1,5 @@
-// export const baseEntrypoint = 'http://127.0.0.1:8000'
-export const baseEntrypoint = 'https://efdjr-server.tech'
+export const baseEntrypoint = 'http://152.67.53.102'
+// export const baseEntrypoint = 'https://efdjr-server.tech'
 
 export const languagesIcons = {
     'JavaScript': 'fab fa-js',
